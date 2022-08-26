@@ -1,12 +1,14 @@
-from typing import List
+from typing import List, Union
 from typing import Optional
 
+from psychopy import colors
 from psychopy.visual import Window
 from psychopy.visual.line import Line
 
 
 class FixationBullsEye:
-    def __init__(self, win: Window, circle_radius: int, color: tuple, pos: Optional[List[int]] = None):
+    def __init__(self, win: Window, circle_radius: int, color: Union[tuple, str, colors.Color],
+                 pos: Optional[List[int]] = None):
         if pos is None:
             pos = [0, 0]
         self.color = color
