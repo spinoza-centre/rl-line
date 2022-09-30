@@ -6,7 +6,7 @@ from psychopy.visual import Window
 from psychopy.visual.line import Line
 
 
-class FixationBullsEye:
+class FixationMark:
     def __init__(self, win: Window, circle_radius: int, color: Union[tuple, str, colors.Color],
                  pos: Optional[List[int]] = None):
         if pos is None:

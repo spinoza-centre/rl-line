@@ -28,6 +28,10 @@ def create_arguments():
     experiment_group.add_argument('--experiment-slice', type=int)
     experiment_group.add_argument('--experiment-intro-wait', type=float)
     experiment_group.add_argument('--experiment-outro-wait', type=float)
+    experiment_group.add_argument('--experiment-left-key', type=str)
+    experiment_group.add_argument('--experiment-right-key', type=str)
+    experiment_group.add_argument('--experiment-keypress-wait', type=int)
+    experiment_group.add_argument('--experiment-checkerboard-wait', type=int)
 
     args = parser.parse_args()
     return args
@@ -83,5 +87,13 @@ def parse_arguments():
                 settings['experiment']['intro_wait'] = value
             elif arg == 'experiment_outro_wait':
                 settings['experiment']['outro_wait'] = value
+            elif arg == 'experiment_left_key':
+                settings['experiment']['left_key'] = value
+            elif arg == 'experiment_right_key':
+                settings['experiment']['right_key'] = value
+            elif arg == 'experiment_keypress_wait':
+                settings['experiment']['keypress_wait'] = value
+            elif arg == 'experiment_checkerboard_wait':
+                settings['experiment']['checkerboard_wait'] = value
 
     return settings

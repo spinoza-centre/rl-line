@@ -35,9 +35,13 @@ def create_settings():
             'experiment': {
                 'name': 'rl-line-01',
                 'probability': 70,
-                'slice': 20,
+                'slice': [1, 3],
                 'intro_wait': 24,
-                'outro_wait': 24
+                'outro_wait': 24,
+                'left_key': '1',
+                'right_key': '0',
+                'keypress_wait': 2000,
+                'checkerboard_wait': 750
             }
         }
     ]
@@ -65,7 +69,6 @@ def load_settings():
 
 def save_settings(settings: dict, path: str):
     settings = [{key: value} for key, value in settings.items()]
-    print(settings)
     with open(path, 'w') as file:
         content = ''
         for setting in settings:

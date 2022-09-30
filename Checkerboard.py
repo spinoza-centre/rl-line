@@ -10,7 +10,7 @@ class Checkerboard(GratingStim):
     def __init__(self, win: Window, size: tuple, pos: Optional[tuple] = None):
         if not pos:
             pos = [0, 0]
-        super(Checkerboard, self).__init__(win=win, size=size, pos=pos)
+        super(Checkerboard, self).__init__(win=win, size=size, pos=pos, mask='circle')
 
         checkerboard = np.array([
             [1, -1, 1, -1, 1, -1, 1, -1],
