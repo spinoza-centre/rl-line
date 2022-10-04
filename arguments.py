@@ -25,7 +25,6 @@ def create_arguments():
     experiment_group = parser.add_argument_group('experiment')
     experiment_group.add_argument('--experiment-name', type=str)
     experiment_group.add_argument('--experiment-probability', type=float)
-    experiment_group.add_argument('--experiment-slice', type=int)
     experiment_group.add_argument('--experiment-intro-wait', type=float)
     experiment_group.add_argument('--experiment-outro-wait', type=float)
     experiment_group.add_argument('--experiment-left-key', type=str)
@@ -81,8 +80,6 @@ def parse_arguments():
                 settings['experiment']['name'] = value
             elif arg == 'experiment_probability':
                 settings['experiment']['probability'] = value
-            elif arg == 'experiment_slice':
-                settings['experiment']['slice'] = value
             elif arg == 'experiment_intro_wait':
                 settings['experiment']['intro_wait'] = value
             elif arg == 'experiment_outro_wait':

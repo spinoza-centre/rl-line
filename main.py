@@ -46,26 +46,27 @@ def create_window(settings):
 
 
 def create_intervals(settings):
+    experiment_name = settings['experiment']['name']
+
     path = op.join(op.dirname(__file__), 'isi.txt')
     exists = op.exists(path)
 
     if exists:
         with open(path, 'r') as file:
             isi = np.loadtxt(file)
-        return isi
     else:
-        experiment_name = settings['experiment']['name']
         first_frequency = settings['environment']['first_frequency']
         second_frequency = settings['environment']['second_frequency']
 
         rng = np.random.default_rng()
         isi = 2 + rng.exponential(2, sum(first_frequency) + sum(second_frequency))
 
-        isi_filename = op.join(op.dirname(__file__), 'logs', f'{experiment_name}_isi.txt')
+    isi_filename = op.join(op.dirname(__file__), 'logs', f'{experiment_name}_isi.txt')
 
-        with open(isi_filename, 'w') as file:
-            np.savetxt(file, isi, fmt='%.18f')
-        return isi
+    with open(isi_filename, 'w') as file:
+        np.savetxt(file, isi, fmt='%.18f')
+
+    return isi
 
 
 def create_experiment(settings):
@@ -113,10 +114,10 @@ def create_experiment(settings):
     return experiment
 
 
-def create_stimuli(window):
+def create_stimuli(window, settings):
     color = colors.Color([255, 0, 0], space='rgb255')
     fixation_mark = FixationMark(win=window, circle_radius=5, color=color)
-    checkerboard = Checkerboard(win=window, size=(128, 128), pos=None)
+    checkerboard = Checkerboard(win=window, size=settings["checkerboard"]["size"], pos=None)
     return fixation_mark, checkerboard
 
 
@@ -147,7 +148,7 @@ def main():
     right_key = settings['experiment']['right_key']
     keys = [left_key, right_key]
 
-    fixation_mark, checkerboard = create_stimuli(window)
+    fixation_mark, checkerboard = create_stimuli(window, settings)
     trial_clock, experiment_clock = core.Clock(), core.Clock()
     trials = experiment.loops[0]
     core.wait(intro_wait)
